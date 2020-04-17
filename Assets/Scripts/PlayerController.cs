@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     //we need the areaTransition name because this will help keep track of which area the player is moving to/from when switching scenes
     public string areaTransitionName;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +32,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //this is the movement. it takes the input for both vertical and horizontal axis simultaneously (allowing for diagonal movement) and multiplies by
-        //movespeed so that we can modify the speed as needed. It also includes a sprinting function.
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed * 2;
-        }
-        else
-        {
-            theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
-        }
+        //this is the movement. it takes the input for both vertical and horizontal axis simultaneously (allowing for diagonal movement) and multiplies by movespeed so that we can modify the speed as needed
+        theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
     }
 }
