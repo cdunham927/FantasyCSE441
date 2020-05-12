@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 8230639155349592087}
   - component: {fileID: 8230639155349592080}
   - component: {fileID: 8230639155349592081}
+  - component: {fileID: 8230639155391696245}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -230,3 +231,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8230639155391696245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8230639155349592082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea563b312180ee41a0c4daa5b8b1712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  experience: 0
+  expToLevel: 100
+  maxHealth: 100
+  curHp: 0
+  maxStamina: 100
+  staminaRegenRate: 1
+  curStam: 0
+  atk: 5
+  def: 1
+  healthImage: {fileID: 0}
+  staminaImage: {fileID: 0}
+  expImage: {fileID: 0}
+  lerpSpd: 5

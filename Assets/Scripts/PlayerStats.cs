@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -22,6 +23,14 @@ public class PlayerStats : MonoBehaviour
     float atk = 5;
     [SerializeField]
     float def = 1;
+    float gold = 0;
+
+    //UI bars variables
+    public Image healthImage;
+    public Image staminaImage;
+    public Image expImage;
+    public float lerpSpd = 5;
+
 
     private void Awake()
     {
@@ -34,14 +43,14 @@ public class PlayerStats : MonoBehaviour
         curStam = maxStamina;
     }
 
-    void TakeDamage(float amt)
+    public void TakeDamage(float amt)
     {
         float dmg = amt - def;
         if (dmg > 0) curHp -= dmg;
         else curHp -= 1;
     }
 
-    void GainExp(float amt)
+    public void GainExp(float amt)
     {
         experience += amt;
         if (experience > expToLevel)
@@ -50,6 +59,11 @@ public class PlayerStats : MonoBehaviour
             GetStat();
             experience -= expToLevel;
         }
+    }
+
+    public void GainGold(float amt)
+    {
+        gold += amt;
     }
 
     void GetStat()
@@ -80,6 +94,14 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+        //healthbar lerp fill
+        healthImage.fillAmount = Mathf.Lerp(healthImage.fillAmount, (curHp / maxHealth), Time.deltaTime * lerpSpd);
+        //stamina lerp fill
+        staminaImage.fillAmount = Mathf.Lerp(staminaImage.fillAmount, (curStam / maxStamina), Time.deltaTime * lerpSpd);
+        //expbar lerp fill
+        expImage.fillAmount = Mathf.Lerp(expImage.fillAmount, (experience / expToLevel), Time.deltaTime * lerpSpd);
+
+
         if (curStam < maxStamina) curStam += Time.deltaTime * staminaRegenRate;
 
         if (Application.isEditor)
