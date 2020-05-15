@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ApoScene2.unity
     guid: f194aafb2cc11ba4ebc529b320d95e2a
+  - enabled: 1
+    path: Assets/Scenes/NateScene.unity
+    guid: 2945ec919b4a12d46ab07830018079d7
+  - enabled: 1
+    path: Assets/Scenes/NateScene2.unity
+    guid: 18c7205b7fc27f5468759345863e2f3c
   m_configObjects: {}
