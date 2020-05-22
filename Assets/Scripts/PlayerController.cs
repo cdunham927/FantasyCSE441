@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     //we need the areaTransition name because this will help keep track of which area the player is moving to/from when switching scenes
     public string areaTransitionName;
+    //allows the use of animator within the sciprt to call activate the animation events
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,9 @@ public class PlayerController : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
+        //This next part is for the sword attack to call for it to b active
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,6 +47,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
+        }
+        //This is for the sword attack. It activates the trigger for the animation to start
+        if(Input.GetMouseButtonDown (0))
+        {
+            anim.SetTrigger("Attack");
         }
     }
 }
