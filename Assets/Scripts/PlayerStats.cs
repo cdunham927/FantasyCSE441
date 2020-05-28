@@ -25,6 +25,8 @@ public class PlayerStats : MonoBehaviour
     float def = 1;
     float gold = 0;
 
+    public float dmgDealt;
+
     //UI bars variables
     public Image healthImage;
     public Image staminaImage;
@@ -41,6 +43,7 @@ public class PlayerStats : MonoBehaviour
     {
         curHp = maxHealth;
         curStam = maxStamina;
+        dmgDealt = atk;
     }
 
     public void TakeDamage(float amt)
