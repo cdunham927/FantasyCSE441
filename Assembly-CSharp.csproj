@@ -11,7 +11,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
+<<<<<<< HEAD
     <ProjectGuid>{87305357-266C-39A3-4A05-DA05F6990700}</ProjectGuid>
+=======
+    <ProjectGuid>{E3AEBE57-A0F1-BCB0-0FF0-E710F4BC7FEC}</ProjectGuid>
+>>>>>>> 45928da86ed10a2aecceaa955fef7c297c0f5f2a
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -64,9 +68,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AreaEntrance.cs" />
     <Compile Include="Assets\Scripts\AreaExit.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Dialogue.cs" />
     <Compile Include="Assets\Scripts\DialogueManager.cs" />
+=======
+    <Compile Include="Assets\Scripts\DetectEnemy.cs" />
+>>>>>>> 45928da86ed10a2aecceaa955fef7c297c0f5f2a
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\LoadGame.cs" />
     <Compile Include="Assets\Scripts\NPC.cs" />
     <Compile Include="Assets\Scripts\OutlineEffect.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
@@ -75,6 +84,7 @@
     <Compile Include="Assets\Scripts\Quest.cs" />
     <Compile Include="Assets\Scripts\QuestHolder.cs" />
     <Compile Include="Assets\Scripts\QuestTrigger.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Questing\Goal.cs" />
     <Compile Include="Assets\Scripts\Questing\KillGoal.cs" />
     <Compile Include="Assets\Scripts\Questing\QuestGiver.cs" />
@@ -114,6 +124,41 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/Owner/Documents/FantasyCSE441/FantasyCSE441/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+=======
+    <Compile Include="Assets\Scripts\SceneLoader.cs" />
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VSCode.Editor">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Users/Curt/Desktop/441Assets/groupRepo/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+>>>>>>> 45928da86ed10a2aecceaa955fef7c297c0f5f2a
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

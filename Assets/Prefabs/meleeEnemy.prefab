@@ -143,16 +143,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc7345e8cf8d3348a685f1ec9ba5970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 50
+  enemyHealth: 25
   enemyAttack: 10
   enemyDef: 3
   xpReward: 15
+  goldReward: 10
   chaseSpeed: 6
   patrolSpeed: 2
   stoppingDist: 1
   chaseDist: 7
   timeBetweenAttacks: 1.5
-  startPatrolDelay: 0
+  startPatrolDelay: 1
   patrolSpots:
   - {fileID: 0}
   - {fileID: 0}

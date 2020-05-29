@@ -6,6 +6,7 @@ TagManager:
   tags:
   - enemy_melee
   - enemy_ranged
+  - holder
   layers:
   - Default
   - TransparentFX
