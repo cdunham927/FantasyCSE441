@@ -67,6 +67,6 @@ public class Quest : MonoBehaviour
 
     public void AcceptQuest()
     {
-        FindObjectOfType<QuestHolder>().AddQuest(this);
+        //FindObjectOfType<QuestHolder>().AddQuest(this);
     }
 }

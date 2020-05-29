@@ -4,46 +4,46 @@ using UnityEngine;
 
 public class QuestHolder : MonoBehaviour
 {
-    public List<Quest> quests = new List<Quest>();
+    public List<QuestNew> quests = new List<QuestNew>();
 
-    public void AddQuest(Quest quest)
+    public void AddQuest(QuestNew quest)
     {
         if (!quests.Contains(quest))
         {
-            Debug.Log("Added " + quest.questName + " to active quests!");
+            Debug.Log("Added " + quest.QuestName + " to active quests!");
             quests.Add(quest);
         }
         else Debug.Log("Already have this quest");
     }
 
-    public void Remove(Quest quest)
+    public void Remove(QuestNew quest)
     {
         quests.Remove(quest);
     }
 
-    public Quest FindQuest(int identifier)
+    public QuestNew FindQuest(int identifier)
     {
-        foreach (Quest q in quests)
+        foreach (QuestNew q in quests)
         {
-            if (q.questIdentifier == identifier && !q.isCompleted) return q;
+            if (q.identifier == identifier && !q.Completed) return q;
         }
         return null;
     }
 
-    public Quest FindQuest(Quest quest)
+    public QuestNew FindQuest(QuestNew quest)
     {
-        foreach (Quest q in quests)
+        foreach (QuestNew q in quests)
         {
-            if (q == quest && !q.isCompleted) return q;
+            if (q == quest && !q.Completed) return q;
         }
         return null;
     }
 
-    public Quest FindQuest(string questName)
+    public QuestNew FindQuest(string questName)
     {
-        foreach(Quest q in quests)
+        foreach(QuestNew q in quests)
         {
-            if (q.questName == questName && !q.isCompleted) return q;
+            if (q.QuestName == questName && !q.Completed) return q;
         }
         return null;
     }
@@ -51,22 +51,22 @@ public class QuestHolder : MonoBehaviour
     //For testing
     public void TestKill()
     {
-        Quest q = FindQuest("Kill Bandits");
-        if (q != null) q.UpdateQuest();
+        QuestNew q = FindQuest("Kill Bandits");
+        if (q != null) q.CheckGoals();
         else Debug.Log("Don't have this quest!");
     }
 
     public void TestFetch()
     {
-        Quest q = FindQuest("Find Ring");
-        if (q != null) q.UpdateQuest();
+        QuestNew q = FindQuest("Find Ring");
+        if (q != null) q.CheckGoals();
         else Debug.Log("Don't have this quest!");
     }
 
     public void TestObjective()
     {
-        Quest q = FindQuest("ETC Objective");
-        if (q != null) q.UpdateQuest();
+        QuestNew q = FindQuest("ETC Objective");
+        if (q != null) q.CheckGoals();
         else Debug.Log("Don't have this quest!");
     }
 }

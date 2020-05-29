@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
@@ -12,80 +13,154 @@ public class NPC : MonoBehaviour
     public bool mouseIsOver = false;
     public GameObject display;
 
-    // Start is called before the first frame update
-    void Start()
+    //Dialogue
+    public Queue<string> sentences;
+    public Dialogue baseDialogue;
+
+    //Text UI
+    public GameObject textObj;
+    [SerializeField]
+    GameObject textInstance;
+    Text nameText;
+    Text textText;
+
+    //Highlight NPC
+    float distanceToPlayerSquared;
+    PlayerController player;
+    Animator anim;
+
+    private void Start()
     {
-     
+        anim = GetComponent<Animator>();
+        sentences = new Queue<string>();
+    }
+
+    public virtual void TriggerDialogue()
+    {
+        StartDialogue(baseDialogue);
+    }
+
+    public void StartDialogue(Dialogue dialogue)
+    {
+        Debug.Log("Starting conversation with " + dialogue.name);
+
+        if (textInstance == null)
+        {
+            textInstance = Instantiate(textObj, Vector3.zero, Quaternion.identity).transform.GetChild(0).gameObject;
+        }
+        else textInstance.SetActive(true);
+
+        if (nameText == null || textText == null)
+        {
+            nameText = textInstance.transform.GetChild(0).GetComponent<Text>();
+            textText = textInstance.transform.GetChild(1).GetComponent<Text>();
+        }
+
+        nameText.text = baseDialogue.name;
+
+        sentences.Clear();
+
+        foreach(string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
+    }
+
+    public void DisplayNextSentence()
+    {
+        if (sentences.Count == 0)
+        {
+            EndDialogue();
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        textText.text = sentence;
+    }
+
+    public virtual void EndDialogue()
+    {
+        isInteracting = false;
+        textInstance.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (player == null) player = FindObjectOfType<PlayerController>();
         if (isInteractable)
         {
-            if (GameObject.FindGameObjectWithTag("Player"))
+            if (player != null)
             {
-                Vector3 diffPos = transform.position - GameObject.FindGameObjectWithTag("Player").transform.position;
-                float distanceToPlayerSquared = (diffPos.x * diffPos.x) + (diffPos.y * diffPos.y);
-                if (distanceToPlayerSquared <= maxHighlightRange || !isInteracting)
+                Vector3 diffPos = transform.position - player.transform.position;
+                distanceToPlayerSquared = (diffPos.x * diffPos.x) + (diffPos.y * diffPos.y);
+
+                if (distanceToPlayerSquared > maxInteractableRange)
                 {
-                    //highlight NPC
-                    if (!isHighlighted && !mouseIsOver)
-                    {
-                        isHighlighted = true;
-                        Debug.Log("highlighting NPC");
-                    }
+                    isHighlighted = false;
+                    isInteracting = false;
                 }
-                else
+
+                if (!isHighlighted)
                 {
-                    if (!mouseIsOver)
-                    {
-                        isHighlighted = false;
-                    }
+                    display.SetActive(false);
                 }
-                if (distanceToPlayerSquared <= maxInteractableRange || !isInteracting)
+
+                if (distanceToPlayerSquared <= maxInteractableRange && !isInteracting && isHighlighted)
                 {
                     display.SetActive(true);
-                    if (Input.GetKey("e") || Input.GetKey("E"))
+                    if (Input.GetMouseButtonDown(0))
                     {
                         isInteracting = true;
+                        TriggerDialogue();
                         Debug.Log("Player is now interacting with NPC");
                         //deploy code to display NPC dialof and limit player controls
                         //NPC isInteracting=true indicates this state.
                     }
+
+                    /*if (Input.GetKey(KeyCode.E))
+                    {
+                        isInteracting = true;
+                        TriggerDialogue();
+                        Debug.Log("Player is now interacting with NPC");
+                        //deploy code to display NPC dialof and limit player controls
+                        //NPC isInteracting=true indicates this state.
+                    }*/
                 }
-                else
-                {
-                    display.SetActive(false);
-                }
+
                 if (isInteracting)
                 {
                     //deploy code to display NPC dialog and limit player controls
                     isHighlighted = false;
-                    if (Input.GetKey("x") || Input.GetKey("X"))//placeholder key press to exit isInteracting state
+                    if (Input.GetKey(KeyCode.X))//placeholder key press to exit isInteracting state
                     {
                         isInteracting = false;
-                        Debug.Log("Player is no longer interacting with NPC");
+                        EndDialogue();
+                        Debug.Log("Player is done talking");
                     }
                 }
             }
         }
-
+        anim.SetBool("Highlight", (isHighlighted && !isInteracting));
     }
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         mouseIsOver = true;
-        if (!isHighlighted || !isInteracting)
+        if (distanceToPlayerSquared <= maxInteractableRange && !isHighlighted && !isInteracting)
         {
             //highlight NPC
             isHighlighted = true;
-            Debug.Log("highlighting NPC");
+            Debug.Log("Mouse is over NPC and player is in range");
         }
     }
 
     private void OnMouseExit()
     {
+        Debug.Log("Mouse is exiting");
+        isHighlighted = false;
         mouseIsOver = false;
     }
 }
