@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Apo Final Scenes/Temple.unity
+=======
+- path: Assets/Scenes/NatePauseMenu.unity
+>>>>>>> 9a87fd65a3effd40b5491f7db41bfe455b53872e
   isLoaded: 1
   isActive: 1
   isSubScene: 0
