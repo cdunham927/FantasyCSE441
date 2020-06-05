@@ -37429,7 +37429,7 @@ PrefabInstance:
     - target: {fileID: 7575770004538244882, guid: 88d2572ce9704504187cc80346f9c535,
         type: 3}
       propertyPath: transitionName
-      value: TempleFront-1
+      value: TempleFront-2
       objectReference: {fileID: 0}
     - target: {fileID: 8030567609713878493, guid: 88d2572ce9704504187cc80346f9c535,
         type: 3}
