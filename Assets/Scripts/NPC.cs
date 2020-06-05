@@ -29,10 +29,16 @@ public class NPC : MonoBehaviour
     PlayerController player;
     Animator anim;
 
+    AudioSource src;
+    public AudioClip clip;
+
     private void Start()
     {
+        src = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         sentences = new Queue<string>();
+        player = FindObjectOfType<PlayerController>();
+        player.isTalking = false;
     }
 
     public virtual void TriggerDialogue()
@@ -42,7 +48,9 @@ public class NPC : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Debug.Log("Starting conversation with " + dialogue.name);
+        src.PlayOneShot(clip);
+        player.isTalking = true;
+        //Debug.Log("Starting conversation with " + dialogue.name);
 
         if (textInstance == null)
         {
@@ -82,6 +90,8 @@ public class NPC : MonoBehaviour
 
     public virtual void EndDialogue()
     {
+        src.PlayOneShot(clip);
+        player.isTalking = false;
         isInteracting = false;
         textInstance.SetActive(false);
     }
@@ -115,7 +125,7 @@ public class NPC : MonoBehaviour
                     {
                         isInteracting = true;
                         TriggerDialogue();
-                        Debug.Log("Player is now interacting with NPC");
+                        //Debug.Log("Player is now interacting with NPC");
                         //deploy code to display NPC dialof and limit player controls
                         //NPC isInteracting=true indicates this state.
                     }
@@ -153,13 +163,11 @@ public class NPC : MonoBehaviour
         {
             //highlight NPC
             isHighlighted = true;
-            Debug.Log("Mouse is over NPC and player is in range");
         }
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Mouse is exiting");
         isHighlighted = false;
         mouseIsOver = false;
     }

@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/ColeScene.unity
-=======
-- path: Assets/Scenes/CurtStartScreenScene.unity
->>>>>>> 45928da86ed10a2aecceaa955fef7c297c0f5f2a
+- path: Assets/Scenes/Apo Final Scenes/Menu.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

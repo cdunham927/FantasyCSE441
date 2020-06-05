@@ -6,7 +6,7 @@ public class KillGoal : Goal
 {
     public int EnemyID { get; set; }
 
-    public KillGoal(QuestNew quest, int enemyID, string description, bool completed, int currentAmount, int requiredAmount)
+    public KillGoal(QuestNew quest, int enemyID, string description, bool completed, int currentAmount, int requiredAmount, type goType)
     {
         this.Quest = quest;
         this.EnemyID = enemyID;
@@ -14,6 +14,7 @@ public class KillGoal : Goal
         this.Completed = completed;
         this.CurrentAmount = currentAmount;
         this.RequiredAmount = requiredAmount;
+        this.goalType = goType;
     }
 
     public override void Init()
@@ -25,12 +26,12 @@ public class KillGoal : Goal
         //QuestEvents.KillQuest += EnemyDied;
     }
 
-    void EnemyDied(EnemyController enemy)
+    public override void Collect(int id)
     {
-        /*if (enemy.ID == this.EnemyID)
+        if (id == this.EnemyID)
         {
             this.CurrentAmount++;
             Evaluate();
-        }*/
+        }
     }
 }

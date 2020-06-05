@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Goal
 {
-    public QuestNew Quest { get; set; }
-    public string Description { get; set; }
-    public bool Completed { get; set; }
-    public int CurrentAmount { get; set; }
-    public int RequiredAmount { get; set; }
+    public QuestNew Quest;
+    public string Description;
+    public bool Completed;
+    public int CurrentAmount;
+    public int RequiredAmount;
+    public enum type { kill, collect }
+    public type goalType;
 
     public virtual void Init()
     {
@@ -18,15 +20,23 @@ public class Goal
 
     public void Evaluate()
     {
+        //Debug.Log("Evaluating goals...");
+        //Debug.Log("Goals complete: " + CurrentAmount + "/" + RequiredAmount);
         if (CurrentAmount >= RequiredAmount)
         {
+            //Debug.Log("Goals complete!");
             Complete();
         }
     }
 
     public void Complete()
     {
-        Quest.CheckGoals();
         Completed = true;
+        Quest.CheckGoals();
+    }
+
+    public virtual void Collect(int id)
+    {
+
     }
 }

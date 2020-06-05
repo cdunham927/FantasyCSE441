@@ -15,10 +15,4 @@ public class AreaEntrance : MonoBehaviour
             PlayerController.instance.transform.position = transform.position;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

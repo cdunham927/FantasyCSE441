@@ -6,7 +6,7 @@ using System.Linq;
 [SerializeField]
 public class QuestNew : MonoBehaviour
 {
-    public List<Goal> Goals { get; set; } = new List<Goal>();
+    public List<Goal> Goals = new List<Goal>();
     public int identifier;
     public string QuestName;
     public string Description;
@@ -18,6 +18,7 @@ public class QuestNew : MonoBehaviour
     public void CheckGoals()
     {
         Completed = Goals.All(g => g.Completed);
+        //if (Completed) Debug.Log("Completed quest! Go turn it in!");
 
         //if (Completed) GiveReward();
     }
@@ -25,8 +26,9 @@ public class QuestNew : MonoBehaviour
     public void GiveReward()
     {
         //QuestEvents.FinishQuest += GiveReward;
-        //PlayerController player = FindObjectOfType<PlayerController>();
-        //player.AddExp(ExperienceReward);
+        PlayerStats player = FindObjectOfType<PlayerStats>();
+        player.GainExp(ExperienceReward);
+        FindObjectOfType<QuestHolder>().Remove(this);
         //player.AddGold(GoldReward);
     }
 }

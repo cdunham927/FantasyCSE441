@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3177472405202116309}
   - component: {fileID: 3177472405202116308}
   - component: {fileID: 3177472405202116307}
+  - component: {fileID: 8895879699643153188}
   m_Layer: 0
   m_Name: rangedEnemy
   m_TagString: enemy_ranged
@@ -130,7 +131,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3177472405202116307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc7345e8cf8d3348a685f1ec9ba5970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   enemyHealth: 20
   enemyAttack: 7
   enemyDef: 3
@@ -160,3 +162,25 @@ MonoBehaviour:
   - {fileID: 0}
   projectile: {fileID: 1440384409836627164, guid: cb0914f44e0c9414b97308f38fcc187f,
     type: 3}
+  hitClip:
+  - {fileID: 8300000, guid: 4666090da3ad314419da8dc6cc718ea9, type: 3}
+  - {fileID: 8300000, guid: 46f075d360386114d80d041a3c03937f, type: 3}
+--- !u!95 &8895879699643153188
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177472405202116304}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8254d8744462c844ba205c805fd5e15e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

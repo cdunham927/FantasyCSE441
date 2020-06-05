@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 13
+  hitClip:
+  - {fileID: 8300000, guid: 4666090da3ad314419da8dc6cc718ea9, type: 3}
+  - {fileID: 8300000, guid: 46f075d360386114d80d041a3c03937f, type: 3}
 --- !u!61 &5085249566958102912
 BoxCollider2D:
   m_ObjectHideFlags: 0

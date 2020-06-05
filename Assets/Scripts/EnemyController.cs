@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public int id;
+    bool hasAdded = false;
+
     enum EnemyState {Patrol, ChaseAttack};
     EnemyState enemyAI;
 
@@ -30,10 +33,18 @@ public class EnemyController : MonoBehaviour
     private Transform target;
     private PlayerStats targetStats;
     private PlayerController playerController;
+    
+    public AudioClip[] hitClip;
+
+    Animator anim;
+    private enum Direction { Fail, North, East, South, West };
+    private bool IsAttacking = false;
+    private int delay = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rigBod = GetComponent<Rigidbody2D>();
         enemyAI = EnemyState.Patrol;
@@ -47,10 +58,26 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyHealth <= 0)
+        if (IsAttacking)
         {
-            targetStats.GainExp(xpReward);
-            targetStats.GainGold(goldReward);
+            delay++;
+            if (delay == 16)
+            {
+                anim.SetBool("IsAttacking", false);
+                IsAttacking = false;
+                delay = 0;
+            }
+        }
+
+        if (enemyHealth <= 0)
+        {
+            if (!hasAdded)
+            {
+                FindObjectOfType<QuestHolder>().UpdateKillQuests(id);
+                targetStats.GainExp(xpReward);
+                targetStats.GainGold(goldReward);
+                hasAdded = true;
+            }
             Destroy(gameObject);
 
             playerController.target = GameObject.FindGameObjectWithTag("holder").GetComponent<EnemyController>();
@@ -74,7 +101,8 @@ public class EnemyController : MonoBehaviour
 
                     Vector2 dir = patrolSpots[randomSpot].transform.position - transform.position;
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    SetAnimDir(angle);
 
                     patrolDelay = startPatrolDelay;
                 }
@@ -91,7 +119,8 @@ public class EnemyController : MonoBehaviour
 
             Vector2 dir = target.transform.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            SetAnimDir(angle);
 
             if (Vector2.Distance(transform.position, target.position) > stoppingDist)
             {
@@ -100,6 +129,9 @@ public class EnemyController : MonoBehaviour
             else //Attack the player if within range
             {
                 rigBod.constraints = RigidbodyConstraints2D.FreezePosition;
+                rigBod.constraints = RigidbodyConstraints2D.FreezeRotation;
+                IsAttacking = true;
+                anim.SetBool("IsAttacking", true);
 
                 if (attackCooldown <= 0)
                 {
@@ -111,6 +143,7 @@ public class EnemyController : MonoBehaviour
                     }
                     else
                     {
+                        PlayerController.instance.PlayClip(hitClip[Random.Range(0, hitClip.Length - 1)], 0.3f);
                         targetStats.TakeDamage(enemyAttack);
                         attackCooldown = timeBetweenAttacks;
                     }
@@ -125,6 +158,31 @@ public class EnemyController : MonoBehaviour
         else
         {
             enemyAI = EnemyState.Patrol;
+        }
+    }
+
+    void SetAnimDir(float angleIn)
+    {
+        if ((angleIn >= 0 && angleIn <= 45) || (angleIn >= 315 && angleIn < 360))
+        {
+            anim.SetInteger("Direction", 2);
+        }
+        else if (angleIn > 45 && angleIn < 135)
+        {
+            anim.SetInteger("Direction", 1);
+        }
+        else if (angleIn >= 135 && angleIn <= 225)
+        {
+            anim.SetInteger("Direction", 4);
+        }
+        else if (angleIn > 225 && angleIn < 315)
+        {
+            anim.SetInteger("Direction", 3);
+        }
+        else
+        {
+            anim.SetInteger("Direction", 3);
+            //Debug.Log("findMovmentDir function failed");
         }
     }
 

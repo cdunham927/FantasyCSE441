@@ -7,6 +7,11 @@ TagManager:
   - enemy_melee
   - enemy_ranged
   - holder
+  - HealthUI
+  - Spawnpoint
+  - TextUI
+  - DeathUI
+  - WinUI
   layers:
   - Default
   - TransparentFX

@@ -10,17 +10,6 @@ public class AreaExit : MonoBehaviour
     //in the inspector, this must be labeled with the name of the specific exit name in the other scene
     //example: in going from "scene1- east" exit to next scene, you will label this something like "scene2- west"
     public string areaTransitionName;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     private PlayerStats targetStats;
     private Transform player;
     private Vector2 target;
+    public AudioClip[] hitClip;
 
     //Help via Blackthornprod YouTube tutorials
     void Start()
@@ -43,6 +44,7 @@ public class Projectile : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            PlayerController.instance.PlayClip(hitClip[Random.Range(0, hitClip.Length - 1)], 0.3f);
             targetStats.TakeDamage(enemyDmg);
             DestroyProjectile();
         }

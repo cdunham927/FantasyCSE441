@@ -8,17 +8,32 @@ public class QuestGiver : NPC
 
     //If NPC can give quest we use these
     public Dialogue midQuestDialogue;
+    public Dialogue finishQuestDialogue;
     public Dialogue postQuestDialogue;
 
     QuestHolder holder;
 
     //Different quest states
+    [SerializeField]
     bool hasGiven = false;
+    [SerializeField]
     bool hasCompleted = false;
 
-    private void Awake()
+    private void OnEnable()
+    {
+        Invoke("SetupQuest", 0.1f);
+    }
+
+    void SetupQuest()
     {
         holder = FindObjectOfType<QuestHolder>();
+        hasGiven = holder.HasQuest(npcQuest.identifier);
+        if (hasGiven) hasCompleted = holder.HasFinishedQuest(holder.FindQuest(npcQuest.identifier));
+        if (holder.FindFinishedQuest(npcQuest.identifier))
+        {
+            hasGiven = true;
+            hasCompleted = true;
+        }
     }
 
     public override void TriggerDialogue()
@@ -27,9 +42,13 @@ public class QuestGiver : NPC
         {
             base.TriggerDialogue();
         }
-        else if (!hasCompleted)
+        else if ((holder.FindQuest(npcQuest.identifier) != null && !holder.FindQuest(npcQuest.identifier).Completed))
         {
             StartDialogue(midQuestDialogue);
+        }
+        else if (!hasCompleted)
+        {
+            StartDialogue(finishQuestDialogue);
         }
         else
         {
@@ -43,13 +62,13 @@ public class QuestGiver : NPC
         {
             holder.AddQuest(npcQuest);
             hasGiven = true;
-            Debug.Log("Added quest from NPC");
+            //Debug.Log("Added " + npcQuest.name + " from NPC");
         }
-        else if (!hasCompleted && holder.FindQuest(npcQuest).Completed)
+        else if (!hasCompleted && (holder.FindQuest(npcQuest.identifier) != null && holder.FindQuest(npcQuest.identifier).Completed))
         {
             hasCompleted = true;
             npcQuest.GiveReward();
-            Debug.Log("Quest completed. Turning in");
+            //Debug.Log("Quest completed. Turning in");
         }
         
         base.EndDialogue();

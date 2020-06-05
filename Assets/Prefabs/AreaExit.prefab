@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 253096176100830394}
   - component: {fileID: 253096176100830395}
-  - component: {fileID: 253096176100830392}
   - component: {fileID: 519278415999791653}
+  - component: {fileID: 3927455869683289559}
   m_Layer: 0
   m_Name: AreaExit
   m_TagString: Untagged
@@ -84,20 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &253096176100830392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253096176100830393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0501dbd94cd834438cc1bc00bfb8b93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  areaToLoad: ApoScene2
-  areaTransitionName: ApoScene2-1
 --- !u!61 &519278415999791653
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,6 +110,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &3927455869683289559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253096176100830393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72800d673169e9b4d81ef81e6b7c604a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaToLoad: 
+  areaTransitionName: 
 --- !u!1 &253096176892262947
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 253096176892262947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6ec4d2e68615304b804c6494215a17e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a5867f6d42ce064eb19d03fd44d3704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionName: ApoScene1-1
+  transitionName: 
